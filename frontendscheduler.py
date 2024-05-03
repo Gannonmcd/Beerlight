@@ -15,12 +15,9 @@ weekly_schedule = {
 scheduler=BackgroundScheduler()
 
 def schedule_turn_ons(schedule):
-    for day, time in schedule.items():
-        scheduler.add_job(func=TurnOn, trigger='cron', day_of_week=day, hour=time['hour'], id=f'turn_on_job{day}')
+    for day, schedtime in schedule.items():
+        scheduler.add_job(func=TurnOn, trigger='cron', day_of_week=day, hour=schedtime['hour'], id=f'turn_on_job{day}')
         scheduler.add_job(func=TurnOff, trigger='cron', day_of_week=day, hour='24', id=f'turn_off_job{day}')
-
-schedule_turn_ons(weekly_schedule)
-scheduler.start()
 
 
 app = Flask(__name__)
@@ -49,9 +46,6 @@ def Flash(flashes=10, time_interval=0.25, endState=1):
     return f"Flashed {flashes} times"
 
 
-scheduler=BackgroundScheduler
-
-
 @app.route('/on', methods=['GET'])
 def turn_on():
     return TurnOn()
@@ -78,3 +72,5 @@ def index():
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=80)
+    schedule_turn_ons(weekly_schedule)
+    scheduler.start()
