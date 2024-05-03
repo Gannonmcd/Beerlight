@@ -1,5 +1,9 @@
 import RPi.GPIO as GPIO
 import time
+import sys
+import scheduler
+
+
 
 GPIO.setmode(GPIO.BOARD)
 GPIO.setwarnings(False)
@@ -25,3 +29,5 @@ def Flash(**kwargs):
         time.sleep(time)
         if(flash == flashes-1) and endState:
             TurnOn()
+
+sys.argv[1]()
