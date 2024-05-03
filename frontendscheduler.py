@@ -12,6 +12,8 @@ weekly_schedule = {
 'Friday': {'hour': '12'},
 }
 
+scheduler=BackgroundScheduler()
+
 def schedule_turn_ons(schedule):
     for day, time in schedule.items():
         scheduler.add_job(func=TurnOn, trigger='cron', day_of_week=day, hour=time['hour'], id=f'turn_on_job{day}')
