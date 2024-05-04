@@ -1,8 +1,10 @@
 from flask import Flask, request, jsonify
 import RPi.GPIO as GPIO
 import time
+import logging
 from apscheduler.schedulers.background import BackgroundScheduler
 
+logger=logging.getLogger(__name__)
 
 weekly_schedule = {
 'Monday': {'hour': '16'},
@@ -68,6 +70,16 @@ def index():
     <p><a href="/on">Turn On</a></p>
     <p><a href="/off">Turn Off</a></p>
     <p><a href="/flash">Flash</a></p>
+    <p>Advanced Flash</p>
+    <br>
+    <form method="get" action="/flash">
+    <label for="flashes">Flashes</label>
+    <input type="number" id="flashes" name="flashes" min="1" max="100">
+    <label for="interval">Flash Interval</label>
+    <input type="number" id="time_interval" name="time_interval" min=".001" max="10">
+    <input type="submit" value="Submit">
+    </form>
+
     '''
 
 if __name__ == '__main__':
