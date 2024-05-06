@@ -76,7 +76,7 @@ def index():
     <label for="flashes">Flashes</label>
     <input type="number" id="flashes" name="flashes" min="1" max="100">
     <label for="interval">Flash Interval</label>
-    <input type="number" id="time_interval" name="time_interval" min=".001" max="10">
+    <input type="number" id="time_interval" name="time_interval" min=".001" max="10" step="any">
     <input type="submit" value="Submit">
     </form>
 
