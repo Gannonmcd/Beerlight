@@ -31,7 +31,7 @@ GPIO.setup(gatepin, GPIO.OUT)
 
 def TurnOn():
     GPIO.output(gatepin, 1)
-    return "Turned On"
+    return "Cheers!"
 
 def TurnOff():
     GPIO.output(gatepin, 0)
@@ -66,17 +66,21 @@ def flash():
 @app.route('/')
 def index():
     return '''
-    <h1>GPIO Control</h1>
+ <h1>Beer Light Control</h1>
     <p><a href="/on">Turn On</a></p>
     <p><a href="/off">Turn Off</a></p>
     <p><a href="/flash">Flash</a></p>
-    <p>Advanced Flash</p>
-    <br>
+    <h2>Advanced Flash</h2>
     <form method="get" action="/flash">
     <label for="flashes">Flashes</label>
     <input type="number" id="flashes" name="flashes" min="1" max="100">
     <label for="interval">Flash Interval</label>
     <input type="number" id="time_interval" name="time_interval" min=".001" max="10" step="any">
+    Light Endstate
+    <input type="radio" id="endState" name="endState" Value="1">
+    <label for="On">On</label>
+    <input type="radio" id="endState" name="endState" Value="0">
+    <label for="Off">Off</label><br>
     <input type="submit" value="Submit">
     </form>
 
