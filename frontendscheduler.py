@@ -7,11 +7,11 @@ from apscheduler.schedulers.background import BackgroundScheduler
 logger=logging.getLogger(__name__)
 
 weekly_schedule = {
-'Monday': {'hour': '16'},
-'Tuesday': {'hour': '15'},
-'Wednesday': {'hour': '14'},
-'Thursday': {'hour': '13'},
-'Friday': {'hour': '12'},
+'mon': {'hour': '16'},
+'tue': {'hour': '15'},
+'wed': {'hour': '14'},
+'thu': {'hour': '13'},
+'fri': {'hour': '12'},
 }
 
 scheduler=BackgroundScheduler()
@@ -19,7 +19,7 @@ scheduler=BackgroundScheduler()
 def schedule_turn_ons(schedule):
     for day, schedtime in schedule.items():
         scheduler.add_job(func=TurnOn, trigger='cron', day_of_week=day, hour=schedtime['hour'], id=f'turn_on_job{day}')
-        scheduler.add_job(func=TurnOff, trigger='cron', day_of_week=day, hour='24', id=f'turn_off_job{day}')
+        scheduler.add_job(func=TurnOff, trigger='cron', day_of_week=day, hour='23', id=f'turn_off_job{day}')
 
 
 app = Flask(__name__)
@@ -90,3 +90,4 @@ if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=80)
     schedule_turn_ons(weekly_schedule)
     scheduler.start()
+    scheduler.print_jobs()
