@@ -77,17 +77,23 @@ def index():
     <label for="interval">Flash Interval</label>
     <input type="number" id="time_interval" name="time_interval" min=".001" max="10" step="any">
     Light Endstate
-    <input type="radio" id="endState" name="endState" Value="1">
+    <input type="radio" id="endStateOn" name="endState" Value="1">
     <label for="On">On</label>
-    <input type="radio" id="endState" name="endState" Value="0">
+    <input type="radio" id="endStateOff" name="endState" Value="0">
     <label for="Off">Off</label><br>
     <input type="submit" value="Submit">
     </form>
 
     '''
 
+
+
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=80)
     schedule_turn_ons(weekly_schedule)
     scheduler.start()
     scheduler.print_jobs()
+    try:
+        app.run(debug=True, host='0.0.0.0', port=80)
+    finally:
+        scheduler.shutdown()
+
