@@ -32,11 +32,12 @@ GPIO.setup(gatepin, GPIO.OUT)
 
 def TurnOn():
     GPIO.output(gatepin, 1)
-    breakflag=True
     return "Cheers!"
 
 def TurnOff():
     GPIO.output(gatepin, 0)
+    global breakflag
+    breakflag=True
     return "Turned Off"
 
 def Flash(flashes=10, time_interval=0.25, endState=1):
