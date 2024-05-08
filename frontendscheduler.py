@@ -83,10 +83,11 @@ def sos():
 @app.route('/')
 def index():
     return '''
- <h1>Beer Light Control</h1>gi
+ <h1>Beer Light Control</h1>
     <p><a href="/on">Turn On</a></p>
     <p><a href="/off">Turn Off</a></p>
     <p><a href="/flash">Flash</a></p>
+    <p><a href="/sos">SOS</a></p>
     <h2>Advanced Flash</h2>
     <form method="get" action="/flash">
     <label for="flashes">Flashes</label>
@@ -100,10 +101,6 @@ def index():
     <label for="Off">Off</label><br>
     <input type="submit" value="Submit">
     </form>
-
-    <br>
-    <h1><a href="/sos">SOS</a></h1>
-
     '''
 
 
