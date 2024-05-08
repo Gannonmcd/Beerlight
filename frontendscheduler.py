@@ -32,6 +32,8 @@ GPIO.setup(gatepin, GPIO.OUT)
 
 def TurnOn():
     GPIO.output(gatepin, 1)
+    global breakflag
+    breakflag=True
     return "Cheers!"
 
 def TurnOff():
