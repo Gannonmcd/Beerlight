@@ -57,7 +57,8 @@ def SOS():
         time.sleep(.25)
         Flash(3, .25, endState=0)
         time.sleep(.25)
-        if (breakflag==True):
+        global breakflag
+        if breakflag==True:
             breakflag=False
             break
 
