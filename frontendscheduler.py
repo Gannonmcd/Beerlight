@@ -58,6 +58,7 @@ def Flash(flashes=10, time_interval=0.25, endState=1):
     return f"Flashed {flashes} times"
 
 def SOS():
+    global sosmode
     sosmode=True
     while True:
         Flash(3, .25, endState=0)
