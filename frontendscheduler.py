@@ -4,6 +4,7 @@ import time
 import logging
 from apscheduler.schedulers.background import BackgroundScheduler
 breakflag=False
+sosmode=False
 
 logger=logging.getLogger(__name__)
 
@@ -57,6 +58,7 @@ def Flash(flashes=10, time_interval=0.25, endState=1):
     return f"Flashed {flashes} times"
 
 def SOS():
+    sosmode=True
     while True:
         Flash(3, .25, endState=0)
         time.sleep(.25)
@@ -94,8 +96,8 @@ def breakSOS():
 
 @app.route('/')
 def index():
-    global breakflag
-    if breakflag:
+    global sosmode
+    if sosmode:
         return '''
         <h1>SOS Mode Active</h1>
         <br>
