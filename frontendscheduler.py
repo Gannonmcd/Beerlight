@@ -42,6 +42,10 @@ def TurnOff():
     breakflag=True
     return "Turned Off"
 
+def BreakSOS():
+    breakflag=True
+    return "SOS Mode Deactivated"
+
 def Flash(flashes=10, time_interval=0.25, endState=1):
     for flash in range(flashes):
         GPIO.output(gatepin, 1)
@@ -84,28 +88,40 @@ def flash():
 def sos():
     return SOS()
 
+@app.route('/break', methods=['GET'])
+def breakSOS():
+    return BreakSOS()
+
 @app.route('/')
 def index():
-    return '''
- <h1>Beer Light Control</h1>
-    <p><a href="/on">Turn On</a></p>
-    <p><a href="/off">Turn Off</a></p>
-    <p><a href="/flash">Flash</a></p>
-    <p><a href="/sos">SOS</a></p>
-    <h2>Advanced Flash</h2>
-    <form method="get" action="/flash">
-    <label for="flashes">Flashes</label>
-    <input type="number" id="flashes" name="flashes" min="1" max="100">
-    <label for="interval">Flash Interval</label>
-    <input type="number" id="time_interval" name="time_interval" min=".001" max="10" step="any">
-    Light Endstate
-    <input type="radio" id="endStateOn" name="endState" Value="1">
-    <label for="On">On</label>
-    <input type="radio" id="endStateOff" name="endState" Value="0">
-    <label for="Off">Off</label><br>
-    <input type="submit" value="Submit">
-    </form>
-    '''
+    global breakflag
+    if breakflag:
+        return '''
+        <h1>SOS Mode Active</h1>
+        <br>
+        <a href="/break">Cancel SOS Mode</a>
+        '''
+    else:
+        return '''
+        <h1>Beer Light Control</h1>
+        <p><a href="/on">Turn On</a></p>
+        <p><a href="/off">Turn Off</a></p>
+        <p><a href="/flash">Flash</a></p>
+        <p><a href="/sos">SOS</a></p>
+        <h2>Advanced Flash</h2>
+        <form method="get" action="/flash">
+        <label for="flashes">Flashes</label>
+        <input type="number" id="flashes" name="flashes" min="1" max="100">
+        <label for="interval">Flash Interval</label>
+        <input type="number" id="time_interval" name="time_interval" min=".001" max="10" step="any">
+        Light Endstate
+        <input type="radio" id="endStateOn" name="endState" Value="1">
+        <label for="On">On</label>
+        <input type="radio" id="endStateOff" name="endState" Value="0">
+        <label for="Off">Off</label><br>
+        <input type="submit" value="Submit">
+        </form>
+        '''
 
 
 
