@@ -47,6 +47,14 @@ def Flash(flashes=10, time_interval=0.25, endState=1):
             GPIO.output(gatepin, 1)
     return f"Flashed {flashes} times"
 
+def SOS:
+    while True:
+        Flash(3, .25, endState=0)
+        time.sleep(.25)
+        Flash(3, .75, endState=0)
+        time.sleep(.25)
+        Flash(3, .25, endState=0)
+        time.sleep(.25)
 
 @app.route('/on', methods=['GET'])
 def turn_on():
@@ -63,10 +71,14 @@ def flash():
     endState = request.args.get('endState', default=1, type=int)
     return Flash(flashes, time_interval, endState)
 
+@app.route('/sos, methods=['GET'])
+def sos():
+    return SOS()
+
 @app.route('/')
 def index():
     return '''
- <h1>Beer Light Control</h1>
+ <h1>Beer Light Control</h1>gi
     <p><a href="/on">Turn On</a></p>
     <p><a href="/off">Turn Off</a></p>
     <p><a href="/flash">Flash</a></p>
@@ -83,6 +95,9 @@ def index():
     <label for="Off">Off</label><br>
     <input type="submit" value="Submit">
     </form>
+    
+    <br>
+    <h1><a href="/sos">SOS</a></h1>
 
     '''
 
