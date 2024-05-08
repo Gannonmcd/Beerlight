@@ -62,6 +62,11 @@ def SOS():
     global sosmode
     sosmode=True
     while True:
+        print('''
+        <>SOS Mode Active</h1>
+        <br>h1
+        <a href="/break">Cancel SOS Mode</a>    
+        ''')
         Flash(3, .25, endState=0)
         time.sleep(.25)
         Flash(3, .75, endState=0)
@@ -101,8 +106,8 @@ def index():
     global sosmode
     if sosmode:
         return '''
-        <h1>SOS Mode Active</h1>
-        <br>
+        <>SOS Mode Active</h1>
+        <br>h1
         <a href="/break">Cancel SOS Mode</a>
         '''
     else:
