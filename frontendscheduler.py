@@ -3,6 +3,7 @@ import RPi.GPIO as GPIO
 import time
 import logging
 from apscheduler.schedulers.background import BackgroundScheduler
+breakflag=False
 
 logger=logging.getLogger(__name__)
 
@@ -31,6 +32,7 @@ GPIO.setup(gatepin, GPIO.OUT)
 
 def TurnOn():
     GPIO.output(gatepin, 1)
+    breakflag=True
     return "Cheers!"
 
 def TurnOff():
@@ -55,6 +57,9 @@ def SOS():
         time.sleep(.25)
         Flash(3, .25, endState=0)
         time.sleep(.25)
+        if (breakflag==True):
+            breakflag=False
+            break
 
 @app.route('/on', methods=['GET'])
 def turn_on():
