@@ -92,12 +92,12 @@ def flash():
 
 @app.route('/sos', methods=['GET'])
 def sos():
-    SOS()
-    return '''
-        <>SOS Mode Active</h1>
+    print('''
+        <h1>SOS Mode Active</h1>
         <br>h1
         <a href="/break">Cancel SOS Mode</a>    
-        '''
+        ''')
+    return SOS()
 
 @app.route('/break', methods=['GET'])
 def breakSOS():
