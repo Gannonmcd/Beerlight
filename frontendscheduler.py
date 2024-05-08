@@ -44,6 +44,7 @@ def TurnOff():
     return "Turned Off"
 
 def BreakSOS():
+    global breakflag
     breakflag=True
     return "SOS Mode Deactivated"
 
