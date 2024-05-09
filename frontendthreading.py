@@ -113,7 +113,7 @@ def index():
     if sosmode:
         return '''
         <h1>SOS Mode Active</h1>
-        <br>h1
+        <br>
         <a href="/break">Cancel SOS Mode</a>
         '''
     else:
