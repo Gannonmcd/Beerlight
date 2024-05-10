@@ -84,7 +84,7 @@ def SOS():
         <h1>SOS Mode Active</h1>
         <br>
         <a href="/break">Cancel SOS Mode</a>
-        <img src="/bjorkman.jpg" width="200" height="150">
+        <img src="static/bjorkman.jpg" width="200" height="150">
         '''
 
 @app.route('/on', methods=['GET'])
