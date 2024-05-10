@@ -49,7 +49,7 @@ def BreakSOS():
     global sosmode
     breakflag=True
     sosmode=False
-    return "SOS Mode Deactivated"
+    return "SOS Mode Deactivated<br><a href="/">Back to Home</a>"
 
 def Flash(flashes=10, time_interval=0.25, endState=1):
     for flash in range(flashes):
