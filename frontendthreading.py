@@ -65,7 +65,7 @@ def SOS():
     global sosmode
     sosmode=True
     def SOSFlash():
-        while True:
+        while sosmode:
             Flash(3, .25, endState=0)
             time.sleep(.25)
             Flash(3, .75, endState=0)
