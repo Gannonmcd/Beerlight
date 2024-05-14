@@ -73,10 +73,12 @@ def SOS():
             time.sleep(.25)
             Flash(3, .75, endState=0)
             time.sleep(.25)
-            Flash(3, .25, endState=0)
+            Flash(3, .25, endState=1)
             time.sleep(.25)
+            time.sleep(120)
             global breakflag
             if breakflag==True:
+                TurnOff()
                 breakflag=False
                 break
     thread = Thread(target=SOSFlash)
